@@ -56,7 +56,7 @@ public class CSVAggregatorController
         }
     }
 
-    @GetMapping("/allFiles")
+    @GetMapping("/all-files")
     @ResponseStatus(HttpStatus.OK)
     public List<File> getAllFiles()
     {
@@ -82,9 +82,19 @@ public class CSVAggregatorController
 
     @PutMapping("/aggregated-csv")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Object> aggregateMediumCSV()
+    public ResponseEntity<Object> aggregateMediumCSV(@RequestParam(
+            value = "type",
+            required = true,
+            defaultValue = "0") String fType)
     {
-        Dataset<Row> dt = csvAggregatorService.aggregateMediumCSV("result_medium.csv");
+        Dataset<Row> dt = null;
+
+        if ( fType.equalsIgnoreCase("medium"))
+        {
+            dt = csvAggregatorService.aggregateMediumCSV("result_medium.csv");
+        } else if ( fType.equalsIgnoreCase("small")) {
+            dt = csvAggregatorService.aggregateSmallCSV("result_small.csv");
+        }
         return ResponseEntity.ok(dt);
 
     }

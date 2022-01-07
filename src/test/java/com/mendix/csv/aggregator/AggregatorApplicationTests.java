@@ -8,25 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -53,7 +43,6 @@ class AggregatorApplicationTests
 				.getContentAsString();
 
 
-		System.out.println(s);
 	}
 
 
@@ -67,14 +56,28 @@ class AggregatorApplicationTests
 
 	@Test
 	@DisplayName("Requests that all medium CSV files be aggregated in sorted order")
-	void aggregateCSVFiles() throws Exception {
+	void aggregateCSVMediumFiles() throws Exception {
 		mockMvc
-				.perform(put("/api/v1/aggregated-csv"))
+				.perform(put("/api/v1/aggregated-csv?type=medium"))
 				.andExpect(status().is2xxSuccessful())
 				.andReturn()
 				.getResponse();
 
 
+		//System.out.println(s);
+	}
+
+	@Test
+	@DisplayName("Requests that all small CSV files be aggregated in sorted order")
+	void aggregateCSVSmallFiles() throws Exception {
+		mockMvc
+				.perform(put("/api/v1/aggregated-csv").
+						param("type", "small"))
+				.andExpect(status().is2xxSuccessful())
+				.andReturn()
+				.getResponse();
+
+		//assertThat(results);
 		//System.out.println(s);
 	}
 

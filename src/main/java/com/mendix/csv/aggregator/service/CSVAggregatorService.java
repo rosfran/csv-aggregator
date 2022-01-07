@@ -2,6 +2,7 @@ package com.mendix.csv.aggregator.service;
 
 
 import com.mendix.csv.aggregator.config.ApplicationConfig;
+import com.mendix.csv.aggregator.service.types.FileTypeEnum;
 import com.mendix.csv.aggregator.util.FilesUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.spark.SparkConf;
@@ -58,21 +59,50 @@ public class CSVAggregatorService
         }
     }
 
-    public void aggregateCSV( String arqOut )
-    {
-
-
-        resultSpark.repartition(50).orderBy(functions.asc("_c1")).coalesce(1).write().format("csv").csv(config.getResourcesDir()+arqOut );
-
-    }
-
     public Dataset<Row> aggregateMediumCSV( String arqOut )
     {
 
         long st = System.currentTimeMillis();
 
-        logger.info("Starting aggregateMediumCSV... = "+st);
-        Dataset<Row> res =  sparkSession.read().format("csv").option("header", "false").load(config.getMediumFilesDir()+"/*").
+        logger.info("Starting aggregateCSV... = "+st);
+
+        Dataset<Row> ds = aggregateCSV( arqOut, FileTypeEnum.MEDIUM);
+
+        logger.info("Stopping aggregateMediumCSV... = "+(System.currentTimeMillis() - st ) / 1000 );
+
+        return ds;
+
+    }
+
+    public Dataset<Row> aggregateSmallCSV( String arqOut )
+    {
+
+        long st = System.currentTimeMillis();
+
+        logger.info("Starting aggregateSmallCSV... = "+st);
+
+        Dataset<Row> ds = aggregateCSV( arqOut, FileTypeEnum.SMALL);
+
+        logger.info("Stopping aggregateSmallCSV... = "+(System.currentTimeMillis() - st ) / 1000 );
+
+        return ds;
+
+    }
+
+    public Dataset<Row> aggregateCSV( String arqOut, FileTypeEnum type )
+    {
+
+        String baseDir = "";
+
+        if ( type == FileTypeEnum.MEDIUM )
+        {
+            baseDir = config.getMediumFilesDir();
+        } else if ( type == FileTypeEnum.SMALL )
+        {
+            baseDir = config.getSmallFilesDir();
+        }
+
+        Dataset<Row> res =  sparkSession.read().format("csv").option("header", "false").load(baseDir+"/*").
                 repartition(20).
                 orderBy(functions.asc("_c0"));
 
@@ -95,7 +125,7 @@ public class CSVAggregatorService
             e.printStackTrace();
         }
 
-        logger.info("Stopping aggregateMediumCSV... = "+(System.currentTimeMillis() - st ) / 1000 );
+
         return res;
 
     }

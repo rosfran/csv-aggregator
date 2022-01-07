@@ -1,0 +1,41 @@
+services:
+
+  app:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    volumes:
+      - ./src/main/resources:/app/vol
+    expose:
+      - 8081
+    ports:
+      - 8081-8085:8081
+    networks:
+      - csvaggr
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 50M
+        reservations:
+          cpus: '0.25'
+          memory: 20M
+        replicas: 2
+          update_config:
+            parallelism: 2
+            delay: 10s
+            order: stop-first
+
+
+networks:
+  csvaggr:
+    driver: bridge
+
+  

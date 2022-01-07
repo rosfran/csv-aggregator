@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker-compose --file docker-compose-scale.yml up -d --build --scale app=5
+docker-compose --file docker-compose-scaling.yaml up -d --build --scale app=5

@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
 
   app:
@@ -11,25 +9,17 @@ services:
     volumes:
       - ./src/main/resources:/app/vol
     expose:
-      - 8081
+      - 8182
     ports:
-      - 8081-8095:8081
+      - 8182-8184:8182
     networks:
       - csvaggr
     deploy:
-      replicas: 6
-      placement:
-        max_replicas_per_node: 1
-      update_config:
-        parallelism: 2
-        delay: 10s
-      restart_policy:
-        condition: on-failure
-
-
+      mode: replicated
+      replicas: 3
 
 networks:
   csvaggr:
     driver: bridge
 
-  
+

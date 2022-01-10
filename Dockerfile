@@ -17,7 +17,7 @@ RUN mvn -B install -DskipTests=true
 ### BUILD image
 FROM openjdk:8-slim
 
-EXPOSE 8081
+EXPOSE 8182
 
 ENV APP_HOME /app
 
@@ -38,4 +38,8 @@ WORKDIR $APP_HOME
 #COPY --chown=gradle:gradle . /home/gradle/src
 COPY ./target/*.jar aggregator-0.0.1.jar
 
-ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions", "-Djava.security.egd=file:/dev/./urandom","-jar","aggregator-0.0.1.jar" ]
+ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions", "-Djava.security.egd=file:/dev/./urandom",
+    "-Dbase.dir.resources=/app/vol/",
+    "-Dbase.dir.small=/app/vol/small_example/",
+    "-Dbase.dir.medium=/app/vol/medium_example/",
+    "-jar","aggregator-0.0.1.jar" ]

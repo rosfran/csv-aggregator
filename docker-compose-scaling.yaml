@@ -17,6 +17,9 @@ services:
     deploy:
       mode: replicated
       replicas: 3
+      update_config:
+        parallelism: 3
+        delay: 10s
 
 networks:
   csvaggr:

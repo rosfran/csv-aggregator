@@ -24,6 +24,29 @@ A solution to merge in a sorted way a list of CSV files.
 * aggregateCSVSmallFiles
 * testSendingFiles
 
+# REST Endpoints
+
+## http://localhost:8182/api/v1/small-files
+
+### Lists all small CSV files
+
+## http://localhost:8182/api/v1/medium-files
+
+### Lists all medium CSV files
+
+## http://localhost:8182/api/v1/aggregated-csv?type=small
+
+## Generates a aggregated CSV file containing all small CSV files
+
+## http://localhost:8182/api/v1/aggregated-csv?type=small
+
+## Generates a aggregated CSV file containing all small CSV files - resulting file is /app/vol/out/result_small.csv
+
+## http://localhost:8182/api/v1/aggregated-csv?type=medium
+
+## Generates a aggregated CSV file containing all medium CSV files - resulting file is /app/vol/out/result_small.csv
+
+
 # Command-line (shell) utilities
 
 ## run_csv_aggregator.sh

@@ -39,5 +39,5 @@ WORKDIR $APP_HOME
 COPY ./target/*.jar aggregator-0.0.1.jar
 
 ENTRYPOINT ["java", "-jar","aggregator-0.0.1.jar" ]
-CMD ["-Djava.security.egd=file:/dev/./urandom -Dbase.dir.resources=/app/vol/ -Dbase.dir.small=/app/vol/small_example/ -Dbase.dir.medium=/app/vol/medium_example/"]
+#CMD ["-Djava.security.egd=file:/dev/./urandom -Ddir.resources=/app/vol/ -Ddir.small=/app/vol/small_example/ -Ddir.medium=/app/vol/medium_example/"]
 

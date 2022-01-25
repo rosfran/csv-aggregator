@@ -1,14 +1,7 @@
-package com.mendix.csv.aggregator.service;
+package org.joinable.csv.aggregator.service;
 
 
-import com.mendix.csv.aggregator.config.ApplicationConfig;
-import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Row;
-import org.apache.spark.sql.SparkSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.joinable.csv.aggregator.config.ApplicationConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

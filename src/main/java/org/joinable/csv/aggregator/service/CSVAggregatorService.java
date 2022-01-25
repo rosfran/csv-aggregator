@@ -1,9 +1,9 @@
-package com.mendix.csv.aggregator.service;
+package org.joinable.csv.aggregator.service;
 
 
-import com.mendix.csv.aggregator.config.ApplicationConfig;
-import com.mendix.csv.aggregator.service.types.FileTypeEnum;
-import com.mendix.csv.aggregator.util.FilesUtil;
+import org.joinable.csv.aggregator.config.ApplicationConfig;
+import org.joinable.csv.aggregator.service.types.FileTypeEnum;
+import org.joinable.csv.aggregator.util.FilesUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -18,16 +18,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.nio.file.attribute.FileAttribute;
-import java.nio.file.attribute.PosixFilePermission;
-import java.nio.file.attribute.PosixFilePermissions;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 
 @Component

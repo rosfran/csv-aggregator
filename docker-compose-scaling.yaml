@@ -11,14 +11,14 @@ services:
     expose:
       - 8182
     ports:
-      - 8182-8184:8182
+      - 8182-8187:8182
     networks:
       - csvaggr
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 6
       update_config:
-        parallelism: 3
+        parallelism: 6
         delay: 10s
 
 networks:

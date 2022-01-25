@@ -1,6 +1,6 @@
-package com.mendix.csv.aggregator;
+package org.joinable.csv.aggregator;
 
-import com.mendix.csv.aggregator.config.ApplicationConfig;
+import org.joinable.csv.aggregator.config.ApplicationConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

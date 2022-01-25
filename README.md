@@ -16,7 +16,7 @@ A solution to merge in a sorted way a list of CSV files.
 
 # Test cases
 
-    The class com.mendix.csv.aggregator.AggregatorApplicationTests, in the test Maven profile, uses Mockito (MockMVC)
+    The class AggregatorApplicationTests, in the test Maven profile, uses Mockito (MockMVC)
     to implement some interesting test cases.
 * allMediumFilesRequested
 * allSmallFilesRequeste

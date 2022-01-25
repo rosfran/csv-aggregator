@@ -1,4 +1,4 @@
-package com.mendix.csv.aggregator.util;
+package org.joinable.csv.aggregator.util;
 
 import org.springframework.web.multipart.MultipartFile;
 

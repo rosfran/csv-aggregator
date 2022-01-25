@@ -1,4 +1,4 @@
-package com.mendix.csv.aggregator;
+package org.joinable.csv.aggregator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;

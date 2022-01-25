@@ -1,9 +1,9 @@
-package com.mendix.csv.aggregator.controller;
+package org.joinable.csv.aggregator.controller;
 
-import com.mendix.csv.aggregator.config.ApplicationConfig;
-import com.mendix.csv.aggregator.service.CSVAggregatorService;
-import com.mendix.csv.aggregator.service.FilesService;
-import com.mendix.csv.aggregator.util.FilesUtil;
+import org.joinable.csv.aggregator.config.ApplicationConfig;
+import org.joinable.csv.aggregator.service.CSVAggregatorService;
+import org.joinable.csv.aggregator.service.FilesService;
+import org.joinable.csv.aggregator.util.FilesUtil;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.Dataset;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 //import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 @RestController

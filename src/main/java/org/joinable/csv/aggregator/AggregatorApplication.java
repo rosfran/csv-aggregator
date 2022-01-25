@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableConfigurationProperties({ApplicationConfig.class})
-@ComponentScan(basePackages = { "com.mendix.csv.aggregator" })
+@ComponentScan(basePackages = { "org.joinable.csv.aggregator" })
 public class AggregatorApplication {
 
 	public static void main(String[] args) {
